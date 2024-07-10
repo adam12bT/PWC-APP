@@ -1,0 +1,83 @@
+<nav class="nav" [ngClass]="{ openSearch: isSearchOpen, openNav: isNavOpen }">
+    <i class="uil uil-bars navOpenBtn" (click)="openNav()"></i>
+    <a href="#" class="logo">CodingLab</a>
+  
+    <ul class="nav-links">
+      <i class="uil uil-times navCloseBtn" ></i>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Products</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+  
+    <i class="uil uil-search search-icon" id="searchIcon" (click)="toggleSearch()"></i>
+    <div class="search-box">
+      <i class="uil uil-search search-icon"></i>
+      <input type="text" placeholder="Search here..." />
+    </div>
+  </nav>
+  
+
+
+
+
+<div class="container" [ngClass]="{'active': isAudienceActive}">
+    <div class="wrapper">
+      <section class="post">
+        <header>Create Post</header>
+        <form>
+          <div class="content">
+            <img src="../../../assets/logo.png" alt="logo" >
+            <div class="details">
+              <p>CodingNepal</p>
+              <div class="privacy" (click)="toggleAudience()">
+                <i class="fas fa-user-friends"></i>
+                <span>Friends</span>
+                <i class="fas fa-caret-down"></i>
+              </div>
+            </div>
+          </div>
+          <textarea placeholder="What's on your mind, CodingNepal?" spellcheck="false" required></textarea>
+          <div class="theme-emoji">
+            <img src="../../../assets/theme.svg" alt="theme">
+            <img src="../../../assets/smile.svg" alt="smile">
+          </div>
+          <div class="options">
+            <p>Add to Your Post</p>
+            <ul class="list">
+              <li><img src="../../../assets/gallery.svg" alt="gallery"></li>
+              <li><img src="../../../assets/tag.svg" alt="gallery"></li>
+              <li><img src="../../../assets/emoji.svg" alt="gallery"></li>
+              <li><img src="../../../assets/mic.svg" alt="gallery"></li>
+              <li><img src="../../../assets/more.svg" alt="gallery"></li>
+            </ul>
+          </div>
+          <button>Post</button>
+        </form>
+      </section>
+      <section class="audience">
+        <header>
+          <div class="arrow-back" (click)="toggleAudience()"><i class="fas fa-arrow-left"></i></div>
+          <p>Select Audience</p>
+        </header>
+        <div class="content">
+          <p>Who can see your post?</p>
+          <span>Your post will show up in News Feed, on your profile and in search results.</span>
+        </div>
+        <ul class="list">
+          <li *ngFor="let audience of audiences" [ngClass]="{'active': audience.active}" (click)="selectAudience(audience)">
+            <div class="column">
+              <div class="icon"><i [class]="audience.icon"></i></div>
+              <div class="details">
+                <p>{{audience.title}}</p>
+                <span>{{audience.description}}</span>
+              </div>
+            </div>
+            <div class="radio"></div>
+          </li>
+        </ul>
+      </section>
+    </div>
+</div>
+<button (click)="logout()">Logout</button>

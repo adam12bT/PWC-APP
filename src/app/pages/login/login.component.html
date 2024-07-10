@@ -1,0 +1,56 @@
+
+<div class="container-fluid vh-100">
+
+    <div class="row h-100">
+      <!-- Left Section with Image -->
+      <div class="col-xl-6 d-none d-xl-flex align-items-center justify-content-center ">
+        <div class="image-container">
+       
+          <img src="../../../assets/unnamed.png" alt="illustration" class="full-image" />
+        </div>
+      </div>
+      
+ 
+      <!-- Right Section with Form -->
+      <div class="col-xl-6 d-flex align-items-center justify-content-center">
+        <div class="w-100 p-4 p-md-5">
+          <span class="mb-2 d-block font-weight-medium"></span>
+          <h2 class="mb-4 text-dark font-weight-bold">Sign In to PwC Connect</h2>
+         
+          <form role="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
+            <div class="form-group mb-3">
+              <label class="font-weight-medium text-dark">Email</label>
+              <input type="email" formControlName="email" class="form-control py-3" placeholder="Enter your email" />
+              <div *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched" class="text-danger">
+                Please enter a valid email !
+              </div>
+            </div>
+           
+            <div class="form-group mb-3">
+              <label class="font-weight-medium text-dark">Password</label>
+              <input type="password" formControlName="password" class="form-control py-3" placeholder="Enter your password" />
+              <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched" class="text-danger">
+                Password must be at least 6 caracters !
+              </div>
+            </div>
+            <div class="custom-control custom-control-alternative custom-checkbox">
+              <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
+              <label class="custom-control-label" for=" customCheckLogin">
+                <span class="text-muted">Remember me</span>
+              </label>
+            </div>
+            <div class="text-center mt-4">
+              <button type="submit" class="btn btn-primary my-4" >Sign in</button>
+            </div>
+            <p class="mb-0">If you don't have an account, please  <a routerLink="/signup">Sign Up</a></p>
+
+          </form>
+     
+         
+     </div>
+     
+
+        </div>
+      </div>
+    </div>
+ 

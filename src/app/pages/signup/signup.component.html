@@ -1,0 +1,84 @@
+<div class="container-fluid vh-100">
+  <div class="row h-100">
+    <!-- Left Section with Image -->
+    <div class="col-xl-6 d-none d-xl-flex align-items-center justify-content-center">
+      <div class="image-container">
+       
+        <img src="../../assets/unnamed.png" alt="illustration" class="full-image" />
+      </div>
+    </div>
+ 
+    <!-- Right Section with Form -->
+    <div class="col-xl-6 d-flex align-items-center justify-content-center">
+      <div class="w-100 p-4 p-md-5">
+        <span class="mb-2 d-block font-weight-medium"></span>
+        <h2 class="mb-4 text-color font-weight-bold">Sign Up to PwC Connect</h2>
+ 
+        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+          <div class="form-group mb-3">
+            <label class="font-weight-medium text-dark">Firstname</label>
+            <input type="text" formControlName="firstname" class="form-control py-3" placeholder="Enter your name" />
+            <div *ngIf="signUpForm.controls['firstname'].invalid && signUpForm.controls['firstname'].touched" class="text-danger">
+              Please enter a valid name.
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label class="font-weight-medium text-dark">Lastname</label>
+            <input type="text" formControlName="lastname" class="form-control py-3" placeholder="Enter your name" />
+            <div *ngIf="signUpForm.controls['lastname'].invalid && signUpForm.controls['lastname'].touched" class="text-danger">
+              Please enter a valid name.
+            </div>
+          </div>
+         
+          <div class="form-group mb-3">
+            <label class="font-weight-medium text-dark">Email</label>
+            <input type="email" formControlName="email" class="form-control py-3" placeholder="Enter your email" />
+            <div *ngIf="signUpForm.controls['email'].invalid && signUpForm.controls['email'].touched" class="text-danger">
+              Please enter a valid email !
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label class="font-weight-medium text-dark">Phone Number</label>
+            <input type="text" formControlName="tel" class="form-control py-3" placeholder="Enter your phone number" />
+            <div *ngIf="signUpForm.controls['tel'].invalid && signUpForm.controls['tel'].touched" class="text-danger">
+              Please enter a valid number.
+            </div>
+          </div>
+
+         
+          <div class="form-group mb-3">
+            <label class="font-weight-medium text-dark">Password</label>
+            <input type="password" formControlName="password" class="form-control py-3" placeholder="Enter your password" />
+            <div *ngIf="signUpForm.controls['password'].invalid && signUpForm.controls['password'].touched" class="text-danger">
+              Password must be at least 6 caracters !
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label class="font-weight-medium text-dark">Some Informations</label>
+            <input type="text" formControlName="informations" class="form-control py-3" placeholder="Enter your name" />
+            <div *ngIf="signUpForm.controls['informations'].invalid && signUpForm.controls['informations'].touched" class="text-danger">
+              Required field .
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label class="font-weight-medium text-dark">image</label>
+            <input type="file" id="image" (change)="onFileSelected($event)" class="form-control w-50 h-50" required>
+          </div>
+
+         
+          <div class="form-group mb-4">
+            <button type="submit" class="btn btn-primary btn-block py-3">Create account</button>
+          </div>
+         
+        </form>
+ 
+       
+        <div class="text-center">
+          <p class="mb-0">Already have an account? <a routerLink="/signin">Sign In</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+

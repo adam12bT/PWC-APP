@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- IconScout CDN -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <!-- Stylesheet -->
+     
+   
+</head>
+<style>
+    .body-content{
+        margin-top: 6rem;
+    }
+</style>
+<nav class="navbar px-5 nav bg-white fixed-top">
+  <div class="container-fluid ">
+    <div>
+      <a class="navbar-brand d-flex align-items-center">
+        <img src="../assets/pwc-connect-removebg-preview.png" class="img-fluid" alt="">
+      </a>
+    </div>
+ 
+    <div class="container">
+      <div class="form-group ">
+        <input type="text" class="form-control" placeholder="Search" aria-label="Search"
+        [(ngModel)]="searchQuery" (input)="filterUsers()">
+      </div>
+      <ul class="list-group" *ngIf="filteredUsers.length > 0">
+        <li *ngFor="let user of filteredUsers" class="list-group-item mb-2 mt-2">
+          <div class="d-flex align-items-center">
+            <img [src]="'data:image/png;base64,'+user.image"alt="Profile" style="width: 70px; height: 70px;">
+            <div>
+              <span class="font-weight-bold d-lg-inline ">{{user?.firstname}} {{user?.lastname}}</span>
+              <button class="btn btn-primary  mx-4 px-4" (click)="handleButtonClick(user)">Contacter</button>
+ 
+            </div>
+          </div>
+        </li>
+      </ul>
+ 
+    </div>
+ 
+    <div class="d-flex align-items-center">
+      <div class="d-flex align-items-center">
+        <img [src]="'data:image/png;base64,' + user.image" class="rounded-circle mx-2" alt="Profile" style="width: 70px; height: 70px;">
+        <span class="font-weight-bold d-lg-inline">{{user.firstname}} {{user.lastname}}</span>
+      </div>
+     
+      <a href="#" class="nav-link">
+        <i class="fas fa-sign-out-alt mx-4 my-4"></i>
+      </a>
+    </div>
+  </div>
+</nav>
+<body>
+   
+ 
+    <!-------------------------------- MAIN ----------------------------------->
+    <div class="body-content px-5 mx-5">
+    <main >
+        <div class=" containeeerrr ">
+            <!----------------- LEFT -------------------->
+            <section class="left px-4 mx-4">
+             
+                <!----------------- SIDEBAR -------------------->
+                <div class="sidebar">
+                    <a class="menu-item active">
+                        <span><i class="uil uil-home"></i></span>
+                        <h3>Home</h3>  
+                    </a>
+                 
+                   
+                    <a class="menu-item" id="messages-notifications" routerLink="/chat">
+                        <span><i class="uil uil-envelope-alt"><small class="notification-count">6</small></i></span>
+                        <h3>Messages</h3>
+                    </a>
+              
+                   
+                    <a class="menu-item" routerLink="/frinds">
+                        <span><i class="uil uil-user"></i></span>
+                        <h3>Users</h3>
+                    </a>
+                    <a class="menu-item">
+                      <span><i class="uil uil-setting"></i></span>
+                      <h3>Setting</h3>
+                  </a>
+                </div>
+                <!----------------- END OF SIDEBAR -------------------->
+           
+            </section>
+ 
+            <!----------------- MIDDLE -------------------->
+            <section class="middle mb-4">
+             
+
+             
+                <!--div class="container mt-4">
+                    <div class="card">
+                      <div class="card-header">
+                        <h2>Create a Post</h2>
+                      </div>
+                      <div class="card-body">
+                        <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+                          <div class="form-group">
+                            <label for="content">Content</label>
+                            <textarea id="content" placeholder="What's on your mind, Diana ?"[(ngModel)]="content" name="content" class="form-control" required></textarea>
+                          </div>
+                          <div class="form-group mt-2">
+                            <label for="image">Image</label>
+                            <input type="file" id="image" (change)="onFileSelected($event)" class="form-control" required>
+                          </div>
+                          <button type="submit" class="btn btn-primary mt-3">Post</button>
+                        </form>
+                      </div>
+                    </div>
+                    </div-->
+                <!----------------- POSTS -------------------->
+                <div class="feeds">
+
+                  <form (ngSubmit)="onSubmit()" enctype="multipart/form-data"  class="feed">
+                    <div class="d-flex align-items-center">
+                      <img [src]="'data:image/png;base64,' + user.image" class="rounded-circle mx-2" alt="Profile" style="width: 70px; height: 70px;">
+                      <span class="font-weight-bold d-lg-inline ">{{ user.firstname }} {{ user.lastname }}</span>
+                  </div>
+                     
+                      <div class="form-group mt-2">
+                        <input id="content"[(ngModel)]="content" name="content"   placeholder="WHAT'S ON YOUR MIND ?"  class="form-control" required>            
+                        <input type="file" id="image" (change)="onFileSelected($event)" class="form-control w-50 h-50" required>
+                      </div>
+                      <button type="submit" class="btn btn-primary mt-3">Post</button>
+                   
+                  </form>
+ 
+                    <div class="feed mb-3 py-2" *ngFor="let post of posts">
+                        <div class="post-card ">
+ 
+                          <div class="head" >
+                            <div class="user">
+                              <div class="profile-photo" >
+                                <img [src]="'data:image/png;base64,' + post.user.image"  >
+                              </div>
+                              <p>{{post.user.firstname}} {{post.user.firstname}} </p>
+
+                              <div class="info">
+                              </div>
+                            </div>
+                            <span class="edit">
+                              <i class="uil uil-ellipsis-h"></i>
+                            </span>
+                          </div>
+                     
+                          <div class="content" >
+                            <p>{{ post.content }} </p>
+                            <img [src]="'data:image/png;base64,' + post.image" alt="Post Image">                          </div>
+                     
+                          <div class="action-buttons">
+                            <div class="interaction-buttons">
+                              <span><i class="uil uil-heart"></i></span>
+                              <span><i class="uil uil-comment-dots"></i></span>
+                              <span><i class="uil uil-share-alt"></i></span>
+                            </div>
+                            <div class="bookmark">
+                              <span><i class="uil uil-bookmark-full"></i></span>
+                            </div>
+                          </div>
+                     
+                          <div class="liked-by">
+                           
+                          </div>
+                     
+                         
+                          <div class="form-group mt-2">
+                            <input [(ngModel)]="comment"   placeholder="WHAT'S ON YOUR MIND?" class="form-control" >
+                          </div>
+                          <button (click)="createComment(post.id)" class="btn btn-primary mt-3">Post</button>
+                          <div class="comments">
+
+                            <div *ngFor="let commentt of post.comments">
+                            <p>           {{ commentt.content }}</p>
+                            </div>
+                            </div>
+                          
+                        </div>
+                      </div>
+       
+               
+                </div>
+            </section>
+             <!----------------- END OF MIDDLE -------------------->
+ 
+            <!----------------- RIGHT -------------------->
+            <section class="right px-4 mx-4">
+               
+ 
+                <!------- FRIEND REQUEST ------->
+                
+                   
+            </section>
+            <!----------------- END OF RIGHT -------------------->
+        </div>
+    </main>
+ 
+    <!----------------- THEME CUSTOMIZATION -------------------->
+    <div class="customize-theme">
+        <div class="card">
+            <h2>Customize your view</h2>
+            <p class="text-muted">Manage your font size, color, and background</p>
+ 
+            <!----------- FONT SIZE ----------->
+            <div class="font-size">
+                <h4>Font Size</h4>
+                <div>
+                    <h6>Aa</h6>
+                    <div class="choose-size">
+                        <span class="font-size-1"></span>
+                        <span class="font-size-2 active"></span>
+                        <span class="font-size-3"></span>
+                        <span class="font-size-4"></span>
+                        <span class="font-size-5"></span>
+                    </div>
+                    <h3>Aa</h3>
+                </div>
+            </div>
+ 
+            <!----------- PRIMARY COLORS ----------->
+            <div class="color">
+                <h4>Color</h4>
+                <div class="choose-color">
+                    <span class="color-1 active"></span>
+                    <span class="color-2"></span>
+                    <span class="color-3"></span>
+                    <span class="color-4"></span>
+                    <span class="color-5"></span>
+                </div>
+            </div>
+ 
+            <!----------- BACKGROUND COLORS ----------->
+            <div class="background">
+                <h4>Background</h4>
+                <div class="choose-bg">
+                    <div class="bg-1 active">
+                        <span></span>
+                        <h5 for="bg-1">Light</h5>
+                    </div>
+                    <div class="bg-2">
+                        <span></span>
+                        <h5 for="bg-2">Dim</h5>
+                    </div>
+                    <div class="bg-3">
+                        <span></span>
+                        <h5 for="bg-3">Dark</h5>
+                    </div>
+                </div>
+            </div>
+       
+    </div>
+    </div>
+    </div>
+</body>
+</html>

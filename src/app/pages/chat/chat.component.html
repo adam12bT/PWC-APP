@@ -1,0 +1,78 @@
+<div class="container">
+  <!-- Page header start -->
+  <div class="page-title">
+      <div class="row gutters">
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+              <h5 class="title">Chat App</h5>
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"></div>
+      </div>
+  </div>
+  <!-- Page header end -->
+
+  <!-- Content wrapper start -->
+  <div class="content-wrapper">
+      <!-- Row start -->
+      <div class="row gutters">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+              <div class="card m-0">
+                  <!-- Row start -->
+                  <div class="row no-gutters">
+                      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-3 col-3">
+                          <div class="users-container">
+                              <div class="chat-search-box">
+                                  <div class="input-group">
+                                      <input class="form-control" placeholder="Search">
+                                      <div class="input-group-btn">
+                                          <button type="button" class="btn btn-info">
+                                              <i class="fa fa-search"></i>
+                                          </button>
+                                      </div>
+                                  </div>
+                              </div>
+                              <ul class="users">
+                                  <li class="person" *ngFor="let user of users" (click)="handleUserClick(user)" [ngClass]="{'selected-user': selectedUserId === user.id}">
+                                      <div class="user">
+                                          <img [src]="'data:image/png;base64,' + user.image" alt="Retail Admin">
+                                          <span class="status busy"></span>
+                                      </div>
+                                      <p class="name-time">
+                                          <span class="name">{{ user.firstname  }} {{ user.lastname }}</span>
+                                      </p>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-9 col-9">
+                          <div class="selected-user">
+                              <span>To: <span class="name"> {{ selectedUserName?.firstname  }}  {{ selectedUserName?.lastname  }}</span></span>
+                          </div>
+                          <div class="chat-container">
+                              <ul class="chat-box chatContainerScroll">
+                                  <li *ngFor="let message of messages" [ngClass]="{'chat-left': message.senderId !== loggedInUserId, 'chat-right': message.senderId === loggedInUserId}">
+                                      <div class="chat-avatar" *ngIf="message.senderId !== loggedInUserId">
+                                        <img [src]="'data:image/png;base64,' + getUserById(message.senderId)?.image" class="rounded-circle mx-2" alt="Profile" style="width: 40px; height: 40px;">
+                                        <div class="chat-name">{{ getUserById(message.senderId)?.firstname  }}</div>
+                                      </div>
+                                      <div class="chat-text">{{ message.content }}</div>
+                                      <div class="chat-avatar" *ngIf="message.senderId === loggedInUserId">
+                                        <img [src]="'data:image/png;base64,' + user.image"  class="rounded-circle mx-2"  style="width: 40px; height: 40px;">
+                                      </div>
+                                  </li>
+                              </ul>
+                              <div class="form-group  mt-3 mb-0 ">
+
+                                  <textarea [(ngModel)]="message" class="form-control " rows="3" placeholder="Type your message here..."></textarea>
+                                  <button (click)="sendMessage()" class="btn btn-primary mt-2" >Send</button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- Row end -->
+              </div>
+          </div>
+      </div>
+      <!-- Row end -->
+  </div>
+  <!-- Content wrapper end -->
+</div>

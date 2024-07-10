@@ -1,0 +1,44 @@
+<nav class="navbar navbar-light bg-light mx-4 px-4 ">
+    <a class="navbar-brand">Navbar</a>
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search"  placeholder="Search" aria-label="Search">
+    </form>
+  </nav>
+<div class="page-content page-container" id="page-content" style="padding-top: 20px;">
+    <div class="container d-flex justify-content-center">
+        <div class="row">
+            <div class="col-lg-6 col-md-8 mb-4" *ngFor="let user of users">
+                <div class="card user-card-full" style="min-width: 350px;">
+                    <div class="row m-l-0 m-r-0">
+                        <div class="col-sm-4 bg-c-lite-green user-profile">
+                            <div class="card-block text-center text-white">
+                                <div class="m-b-25">
+                                    <img [src]="'data:image/png;base64,' + user.image" class="img-radius" alt="User-Profile-Image" class="rounded-circle mx-5 "  style="width: 70px; height: 70px; ">
+                                </div>
+                                <p>{{ user.firstname }} {{ user.lastname }}</p>
+                                <button class="button-62" (click)="handleButtonClick(user)">Contacter</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="card-block" style="padding-top: 20px;">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Email</p>
+                                        <h6 class="text-muted f-w-400">{{ user.email }}</h6>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Phone</p>
+                                        <h6 class="text-muted f-w-400">{{ user.tel }}</h6>
+                                    </div>
+                                </div>
+                                <hr>
+                                <p class="m-b-10 mt-3 f-w-600">Informations</p>
+                                <h6 class="text-muted f-w-400">{{ user.informations }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
